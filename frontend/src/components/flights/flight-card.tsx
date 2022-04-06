@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { Box, Card, Container, Typography } from "@material-ui/core";
+import React from "react";
+import { Box, Card, Typography, InputLabel, Select, MenuItem } from "@material-ui/core";
 
 import { FlightStatuses } from "../../models/flight.model";
 
@@ -26,6 +26,15 @@ const mapFlightStatusToColor = (status: FlightStatuses) => {
 export const FlightCard: React.FC<FlightCardProps> = (
   props: FlightCardProps
 ) => {
+
+  const handleStatusChange = (event: React.ChangeEvent<
+    {
+    name?: string | undefined;
+    value: unknown;
+}>) => {
+    console.log(event?.target.value)
+  }
+
   return (
     <Card
       style={{
@@ -47,6 +56,24 @@ export const FlightCard: React.FC<FlightCardProps> = (
       </Box>
       <Box>
         <Typography>Destination: {props.destination}</Typography>
+      </Box>
+
+      <Box>
+        <Typography>Origin: {props.origin}</Typography>
+        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            defaultValue={props.status}
+            label="Status"
+            onChange={handleStatusChange}
+          >
+            {
+              Object.entries(FlightStatuses).map(([key, value]) => {
+                return (<MenuItem id={key} value={value}>{value}</MenuItem>)
+              })
+            }
+          </Select>
       </Box>
     </Card>
   );

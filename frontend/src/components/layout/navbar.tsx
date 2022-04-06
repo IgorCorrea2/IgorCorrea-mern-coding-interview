@@ -12,7 +12,7 @@ export const NavBar: React.FC<RouteComponentProps> = () => {
           style={{ marginRight: "auto", width: "150px" }}
         />
 
-        <Button color="inherit" href="/">
+        <Button color="inherit" href="/flights">
           Flights
         </Button>
       </Toolbar>

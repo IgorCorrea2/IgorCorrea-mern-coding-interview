@@ -17,10 +17,15 @@ const routingControllersOptions: RoutingControllersOptions = {
     defaultErrorHandler: true,
 }
 
+
+const initDatabase = async ()=> {
+    await db({ test: false })
+}
+
 const app = createExpressServer(routingControllersOptions)
 
 // Connect to In-Memory DB
-;async () => await db({ test: false })
+ initDatabase()
 
 app.listen(port, () => {
     console.log(`[Live Coding Challenge] Running at http://localhost:${port}`)
